@@ -7,7 +7,7 @@ const app = express()
 
 // Configuring handlebars as view engine
 app.engine('hbs', exphbs({
-    defaultLayout: 'main',
+    defaultLayout: 'main', // Application styling base
     extname: '.hbs' // Shortening handlebar extension name for convenience
 }))
 
@@ -15,7 +15,14 @@ app.set('view engine', 'hbs')
 
 // Request handling (routes)
 app.get('/', (req, res) => {
-    res.render('home');
+    res.render('home', {
+        post: {
+            image: 'https://picsum.photos/300/300',
+            name: 'Story One',
+            description: 'This is an horror story',
+            comments: []
+        }
+    });
 })
 
 // Listening port
