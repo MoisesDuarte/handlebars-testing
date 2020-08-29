@@ -43,7 +43,7 @@ app.get('/', (req, res) => {
                 ]
             },
         ]
-    });
+    })
 })
 
 // Listening port
