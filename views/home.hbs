@@ -1,17 +1,21 @@
-{{!-- <div class="card-deck"> --}}
-    <div class="card" style="width: 18rem;">
+<div class="card-deck">
+
+    {{#each posts}}
+    <div class="card m-4" style="width: 18rem;">
         <!-- Card Heading -->
-        <img src="{{post.image}}" class="card-img-top">
+        <img src="{{this.image}}" class="card-img-top">
 
         <div class="card-body">
             <!-- Card Text -->
-            <h5 class="card-title">{{post.name}}</h5>
+            <h5 class="card-title">{{this.name}}</h5>
             <p class="card-text">{{post.description}}</p>
 
             <!-- Comments Listing-->
-            {{#if post.comments}} <!-- check if comment array is not null (true) -->
+            {{#if this.comments}} <!-- check if comment array is not null (true) -->
             <ul class="list-group">
-                <li class="list-group-item">{{post.comments}}</li>
+                {{#each this.comments}}
+                <li class="list-group-item">{{this}}</li>
+                {{/each}}
             </ul>
             {{else}}
             <ul class="list-group">
@@ -20,5 +24,7 @@
             {{/if}}
         </div>
     </div>
-{{!-- </div> --}}
+    {{/each}}
+
+</div>
 
