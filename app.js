@@ -8,7 +8,16 @@ const app = express()
 // Configuring handlebars as view engine
 app.engine('hbs', exphbs({
     defaultLayout: 'main', // Application styling base
-    extname: '.hbs' // Shortening handlebar extension name for convenience
+    extname: '.hbs', // Shortening handlebar extension name for convenience
+    helpers: {
+        getShortComment(comment) {
+            if (comment.length < 36) {
+                return comment;
+            } else {
+                return comment.substring(0, 35) + '...';
+            }
+        }
+    }
 }))
 
 app.set('view engine', 'hbs')
@@ -39,7 +48,8 @@ app.get('/', (req, res) => {
                 description: 'This is an adventurous story',
                 comments: [
                     'This one sucks!',
-                    'You are the one who sucks!'
+                    'You are the one who sucks!',
+                    'Lorem ipsum ent dolor sit amet requiescat domus explanatorius faquius.'
                 ]
             },
         ]
@@ -47,6 +57,6 @@ app.get('/', (req, res) => {
 })
 
 // Listening port
-app.listen(3000, () => {
-    console.log('Web server listening on port 3000')
+app.listen(8080, () => {
+    console.log('Web server listening on port 8080')
 })
